@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <title>home</title>
   <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
   <style media="screen">
   body {
@@ -54,13 +54,13 @@ border-top-right-radius: 0;
   <div class="container">
         <form class="form-signin" role="form">
           <h2 class="form-signin-heading">Please sign in</h2>
-          <!--<input type="email" class="form-control" placeholder="Email address" required="" autofocus="">-->
+          <input type="email" class="form-control" placeholder="Email address" required="" autofocus="">
           <input type="password" class="form-control pwd" placeholder="Password">
-          <!--<div class="checkbox">-->
-            <!--<label>-->
-              <!--<input type="checkbox" value="remember-me"> Remember me-->
-            <!--</label>-->
-          <!--</div>-->
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value="remember-me"> Remember me
+            </label>
+          </div>
           <button class="btn btn-lg btn-primary btn-block" type="button">Sign in</button>
         </form>
       </div> <!-- /container -->
@@ -69,16 +69,14 @@ border-top-right-radius: 0;
 <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script>
     $(document).ready(function () {
-        console.log(window.location.host)
-        var host = window.location.host
+        console.log(window.location.href)
         $(".btn").click(function () {
             var pwd = $(".pwd").val();
             var data = {
                 pwd:pwd
             }
             console.log(pwd)
-            $.post("http://" + host + '/api/admin',data,function (msg) {
-                console.log(msg)
+            $.post('http://localhost:8888/api/admin',data,function (msg) {
             })
         })
     })

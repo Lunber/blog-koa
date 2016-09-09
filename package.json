@@ -16,6 +16,7 @@
     "ejs": "^1.0.0",
     "koa": "^1.0.0",
     "koa-basic-auth": "^1.1.1",
+    "koa-body": "^1.5.0",
     "koa-compose": "^2.3.0",
     "koa-cors": "0.0.16",
     "koa-csrf": "^2.1.1",
