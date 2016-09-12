@@ -4,7 +4,6 @@
 var Router = require('koa-router');
 var views = require('co-views')
 var koaBody = require('koa-body')();
-var session = require('koa-session');
 
 var main_router = new Router({})
 var api_router = new Router({
@@ -15,8 +14,6 @@ var render = views('backhtml', {
 })
 
 module.exports = function (app) {
-    app.keys = ['Lunber cookie key'];
-    app.use(session(app));
     api_router.get('/', function*(next) {
         this.response.body = 'Hello World!';
     })
