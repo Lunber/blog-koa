@@ -1,82 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>home</title>
-  <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
-  <style media="screen">
-  body {
-padding-top: 40px;
-padding-bottom: 40px;
-background-color: #eee;
-}
-
-.form-signin {
-max-width: 330px;
-padding: 15px;
-margin: 0 auto;
-}
-.form-signin .form-signin-heading,
-.form-signin .checkbox {
-margin-bottom: 10px;
-}
-.form-signin .checkbox {
-font-weight: normal;
-}
-.form-signin .form-control {
-position: relative;
-height: auto;
--webkit-box-sizing: border-box;
-   -moz-box-sizing: border-box;
-        box-sizing: border-box;
-padding: 10px;
-font-size: 16px;
-}
-.form-signin .form-control:focus {
-z-index: 2;
-}
-.form-signin input[type="email"] {
-margin-bottom: -1px;
-border-bottom-right-radius: 0;
-border-bottom-left-radius: 0;
-}
-.form-signin input[type="password"] {
-margin-bottom: 10px;
-border-top-left-radius: 0;
-border-top-right-radius: 0;
-}
-
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>home</title>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <style media="screen">
+        body {
+            padding-top: 40px;
+            padding-bottom: 40px;
+            background-color: #eee;
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-        <form class="form-signin" role="form">
-          <h2 class="form-signin-heading">Please sign in</h2>
-          <input type="email" class="form-control" placeholder="Email address" required="" autofocus="">
-          <input type="password" class="form-control pwd" placeholder="Password">
-          <div class="checkbox">
-            <label>
-              <input type="checkbox" value="remember-me"> Remember me
-            </label>
-          </div>
-          <button class="btn btn-lg btn-primary btn-block" type="button">Sign in</button>
-        </form>
-      </div> <!-- /container -->
+
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Lunber blog</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#" id="sign-out">登出</a></li>
+            </ul>
+            <!--<form class="navbar-form navbar-right">-->
+            <!--<input type="text" class="form-control" placeholder="Search...">-->
+            <!--</form>-->
+        </div>
+    </div>
+</nav>
+
+<!--<div class="container-fluid">-->
+<!--<div class="row">-->
+<!--<div class="col-sm-3 col-md-2 sidebar">-->
+<!--<ul class="nav nav-sidebar">-->
+<!--<li class="active"><a href="#">Overview</a></li>-->
+<!--<li><a href="#">Reports</a></li>-->
+<!--<li><a href="#">Analytics</a></li>-->
+<!--<li><a href="#">Export</a></li>-->
+<!--</ul>-->
+<!--<ul class="nav nav-sidebar">-->
+<!--<li><a href="">Nav item</a></li>-->
+<!--<li><a href="">Nav item again</a></li>-->
+<!--<li><a href="">One more nav</a></li>-->
+<!--<li><a href="">Another nav item</a></li>-->
+<!--<li><a href="">More navigation</a></li>-->
+<!--</ul>-->
+<!--<ul class="nav nav-sidebar">-->
+<!--<li><a href="">Nav item again</a></li>-->
+<!--<li><a href="">One more nav</a></li>-->
+<!--<li><a href="">Another nav item</a></li>-->
+<!--</ul>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
 </body>
 <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
 <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script>
     $(document).ready(function () {
-        console.log(window.location.href)
-        $(".btn").click(function () {
-            var pwd = $(".pwd").val();
-            var data = {
-                pwd:pwd
-            }
-            console.log(pwd)
-            $.post('http://localhost:8888/api/admin',data,function (msg) {
+        var host = window.location.host
+        $("#sign-out").click(function () {
+            $.get("http://" + host + '/api/signOut',function (msg) {
+                msg.code == 1 ? window.location.href = "/admin" : console.log("false");
             })
         })
     })
