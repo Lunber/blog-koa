@@ -30,6 +30,7 @@
     "koa-static": "^2.0.0",
     "moment": "^2.14.1",
     "mongoose": "^4.5.10",
+    "mongoose-paginate": "^5.0.0",
     "raw-body": "^1.2.1",
     "save-to": "^1.0.3",
     "streaming-json-stringify": "^1.0.0",
