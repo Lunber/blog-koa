@@ -23,6 +23,7 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
+              <li><a href="#" id="save-password">保存密码</a></li>
                 <li><a href="#" id="sign-out">登出</a></li>
             </ul>
             <!--<form class="navbar-form navbar-right">-->
@@ -65,6 +66,14 @@
         $("#sign-out").click(function () {
             $.get("http://" + host + '/api/signOut',function (msg) {
                 msg.code == 1 ? window.location.href = "/admin" : console.log("false");
+            })
+        })
+        $("#save-password").click(function () {
+          var data = {
+            pwd:'123456'
+          }
+            $.post("http://" + host + '/api/savePwd',data,function (msg) {
+                // msg.code == 1 ? window.location.href = "/admin" : console.log("false");
             })
         })
     })

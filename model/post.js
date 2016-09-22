@@ -1,13 +1,18 @@
 /**
  * Created by lwb on 2016/9/13.
  */
-/**
- * Created by lwb on 2016/8/23.
- */
-var db = require('./mongoose');
+var mongoose = require('mongoose');
 
 
+var Schema = mongoose.Schema
 
-db.once('open' , function () {
-
+var postSchema = new Schema({
+  id: Number,
+  title: String,
+  content: String,
+  category: { name: String, url: String },
+  tags: { type: Array, default: [] },
+  createdAt: { type: Date, default: Date.now }
 })
+
+module.exports = mongoose.model('Post' , postSchema)

@@ -4,6 +4,8 @@
 var Router = require('koa-router');
 var views = require('co-views')
 var koaBody = require('koa-body')();
+var Post = require('../model/post.js')
+var User = require('../model/user.js')
 
 var main_router = new Router({})
 var api_router = new Router({
@@ -46,6 +48,18 @@ module.exports = function (app) {
                 code: '1'
             }
             this.session.login = ""
+        })
+        .post('/savepwd',koaBody,function* (next){
+          console.log(this.request.body.pwd)
+          var pwd = this.request.body.pwd
+          var user = new User({
+            password:pwd
+          })
+          console.log(user.password)
+          user.save()
+          User.find(function(err,users){
+            console.log(users)
+          })
         })
 
     main_router.get('/admin', function*(next) {

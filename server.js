@@ -5,13 +5,13 @@ var cors = require('koa-cors');
 var co = require('co');
 var serve = require('koa-static')
 var session = require('koa-session');
-// var mongoose = require('mongoose');
+var mongoose = require('mongoose');
 
 var routes = require('./routes/index')
 
-// mongoose.Promise = global.Promise;
-// mongoose.connect('mongodb://localhost:27017/blog');
-// mongoose.connection.on('error', console.error.bind(console, '连接数据库失败'));
+mongoose.Promise = global.Promise;
+mongoose.connect('mongodb://localhost:27017/blog');
+mongoose.connection.on('error', console.error.bind(console, '连接数据库失败'));
 
 app.use(json());
 app.use(cors());
