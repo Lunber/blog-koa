@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,68 +15,103 @@
         }
     </style>
 </head>
+
 <body>
 
-<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#">Lunber blog</a>
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Lunber blog</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <!-- <li><a href="#" id="save-password">保存密码</a></li> -->
+                    <li><a href="#" id="sign-out">登出</a></li>
+                </ul>
+                <!--<form class="navbar-form navbar-right">-->
+                <!--<input type="text" class="form-control" placeholder="Search...">-->
+                <!--</form>-->
+            </div>
         </div>
-        <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav navbar-right">
-              <li><a href="#" id="save-password">保存密码</a></li>
-                <li><a href="#" id="sign-out">登出</a></li>
-            </ul>
-            <!--<form class="navbar-form navbar-right">-->
-            <!--<input type="text" class="form-control" placeholder="Search...">-->
-            <!--</form>-->
+    </nav>
+
+    <div class="container-fluid" style="margin-top:20px">
+        <div class="row">
+            <div class="col-sm-3 col-md-2 sidebar">
+                <ul class="nav nav-sidebar">
+                    <li class="active"><a href="#">发表文章</a></li>
+                    <!-- <li><a href="#">Reports</a></li>
+                    <li><a href="#">Analytics</a></li>
+                    <li><a href="#">Export</a></li> -->
+                </ul>
+                <!-- <ul class="nav nav-sidebar">
+                    <li><a href="">Nav item</a></li>
+                    <li><a href="">Nav item again</a></li>
+                    <li><a href="">One more nav</a></li>
+                    <li><a href="">Another nav item</a></li>
+                    <li><a href="">More navigation</a></li>
+                </ul>
+                <ul class="nav nav-sidebar">
+                    <<li><a href="">Nav item again</a></li>
+                        <li><a href="">One more nav</a></li>
+                        <li><a href="">Another nav item</a></li>
+                </ul> -->
+            </div>
+            <div class="col-sm-3 col-md-10 sidebar">
+                <form role="form">
+                    <div class="form-group">
+                        <label for="post-title">文章标题</label>
+                        <input type="text" class="form-control" id="post-title" placeholder="标题">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">分类</label>
+                        <input type="text" class="form-control" id="post-category" placeholder="分类">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">标签</label>
+                        <input type="text" class="form-control" id="post-tags" placeholder="标签">
+                    </div>
+                    <textarea class="form-control" rows="20" placeholder="内容" id="post-content"></textarea>
+                    <button type="button" class="btn btn-default" id="submit">Submit</button>
+                </form>
+            </div>
         </div>
     </div>
-</nav>
-
-<!--<div class="container-fluid">-->
-<!--<div class="row">-->
-<!--<div class="col-sm-3 col-md-2 sidebar">-->
-<!--<ul class="nav nav-sidebar">-->
-<!--<li class="active"><a href="#">Overview</a></li>-->
-<!--<li><a href="#">Reports</a></li>-->
-<!--<li><a href="#">Analytics</a></li>-->
-<!--<li><a href="#">Export</a></li>-->
-<!--</ul>-->
-<!--<ul class="nav nav-sidebar">-->
-<!--<li><a href="">Nav item</a></li>-->
-<!--<li><a href="">Nav item again</a></li>-->
-<!--<li><a href="">One more nav</a></li>-->
-<!--<li><a href="">Another nav item</a></li>-->
-<!--<li><a href="">More navigation</a></li>-->
-<!--</ul>-->
-<!--<ul class="nav nav-sidebar">-->
-<!--<li><a href="">Nav item again</a></li>-->
-<!--<li><a href="">One more nav</a></li>-->
-<!--<li><a href="">Another nav item</a></li>-->
-<!--</ul>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
 </body>
 <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
 <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script>
-    $(document).ready(function () {
+    $(document).ready(function() {
         var host = window.location.host
-        $("#sign-out").click(function () {
-            $.get("http://" + host + '/api/signOut',function (msg) {
+        $("#sign-out").click(function() {
+            $.get("http://" + host + '/api/signOut', function(msg) {
                 msg.code == 1 ? window.location.href = "/admin" : console.log("false");
             })
         })
-        $("#save-password").click(function () {
-          var data = {
-            pwd:'123456'
-          }
-            $.post("http://" + host + '/api/savePwd',data,function (msg) {
+        $("#save-password").click(function() {
+            var data = {
+                pwd: '123456'
+            }
+            $.post("http://" + host + '/api/savePwd', data, function(msg) {
                 // msg.code == 1 ? window.location.href = "/admin" : console.log("false");
+            })
+        })
+        $('#submit').click(function() {
+            var title = $('#post-title').val()
+            var category = $('#post-category').val()
+            var tags = $('#post-tags').val()
+            var content = $('#post-content').val()
+            var data = {
+                title: title,
+                category: category,
+                tags: tags,
+                content: content
+            }
+            $.post("http://" + host + '/api/savePost', data, function (msg) {
+
             })
         })
     })
 </script>
+
 </html>

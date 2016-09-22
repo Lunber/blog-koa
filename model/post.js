@@ -10,7 +10,7 @@ var postSchema = new Schema({
   id: Number,
   title: String,
   content: String,
-  category: { name: String, url: String },
+  category: String,
   tags: { type: Array, default: [] },
   createdAt: { type: Date, default: Date.now }
 })
