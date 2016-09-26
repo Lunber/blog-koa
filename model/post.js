@@ -12,7 +12,8 @@ var postSchema = new Schema({
   content: String,
   category: String,
   tags: { type: Array, default: [] },
-  createdAt: { type: Date, default: Date.now }
+  createdAt: { type: Date, default: Date.now },
+  createdDay:String
 })
 
 module.exports = mongoose.model('Post' , postSchema)
