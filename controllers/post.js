@@ -25,7 +25,7 @@ const savePost = function *(next) {
         if (err){
             console.log(err)
         }else {
-            
+
         }
     })
 }
@@ -37,7 +37,17 @@ const getPostList = function *(next) {
     })
 }
 
+const getPost = function *(next) {
+    var id = this.request.body.id
+    yield Post.find({id:id},{},(err, posts) => {
+        console.log(posts)
+
+        return this.response.body = posts
+    })
+}
+
 module.exports = {
     savePost,
-    getPostList
+    getPostList,
+    getPost
 }

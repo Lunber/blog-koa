@@ -109,7 +109,7 @@
                 content: content
             }
             $.post("http://" + host + '/api/savePost', data, function (msg) {
-
+                location.reload()
             })
         })
         $('#submit2').click(function () {

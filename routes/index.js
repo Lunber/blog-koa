@@ -23,6 +23,7 @@ module.exports = function(app) {
         .get('/signout', User.signOut)
         .post('/savepost',koaBody,Post.savePost)
         .get('/postlist',Post.getPostList)
+        .post('/post',koaBody,Post.getPost)
 
     main_router
         .get('/admin', function*(next) {
